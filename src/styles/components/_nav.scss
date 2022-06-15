@@ -1,0 +1,159 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.nav_left {
+  font-size: 1.5rem;
+  color: #0dcaf0;
+  font-weight: bold;
+}
+.bi-book-half {
+  margin-right: 5px;
+}
+
+.nav_right {
+  display: flex;
+  align-items: center;
+}
+.ul_list {
+  display: flex;
+  margin-right: 40px;
+  a {
+    color: gray;
+    font-weight: bold;
+    margin-right: 32px;
+    display: inline-block;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      background-color: #0dcaf0;
+      transition: width 0.5s ease;
+    }
+    &:hover {
+      color: #0dcaf0;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+.btn_group {
+  .loginBtn {
+    color: #0dcaf0;
+    border: 1px solid #0dcaf0;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-right: 16px;
+    display: inline-block;
+    transition: all 0.5s ease;
+    text-align: center;
+    &:hover {
+      background-color: #0dcaf0;
+      color: #fff;
+    }
+  }
+  .registerBtn {
+    color: #198754;
+    border: 1px solid #198754;
+    border-radius: 5px;
+    padding: 10px 10px;
+    display: inline-block;
+    transition: all 0.5s ease;
+    text-align: center;
+    &:hover {
+      background-color: #198754;
+      color: #fff;
+    }
+  }
+}
+.bi-list {
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+.bi-x {
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+  z-index: 150;
+  display: none;
+}
+
+//media
+@media (max-width: 785px) {
+  .bi-list {
+    display: block;
+  }
+  .nav_right {
+    position: fixed;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    flex-direction: column;
+    background-color: wheat;
+    transition: width 0.5s ease;
+    z-index: 5;
+  }
+  .nav_container.show {
+    .bi-list {
+      display: none;
+    }
+    .bi-x {
+      display: block;
+    }
+    .nav_right {
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+  .ul_list {
+    flex-direction: column;
+    margin-top: 72px;
+    margin-right: 0;
+    a {
+      margin-top: 2rem;
+      margin-right: 0;
+      text-align: center;
+    }
+  }
+  .btn_group {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    padding-top: 2rem;
+    .loginBtn {
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .registerBtn {
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+}
