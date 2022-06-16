@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
   const handMunuToggle = (show: string) => {
     setMenuShow(show);
   };
+  useEffect(() => {
+    if (menuShow) {
+      document.body.style.overflow = "hidden";
+      return;
+    }
+    document.body.style.overflow = "unset";
+  }, [menuShow]);
   return (
     <header className="header">
       <div className={`container nav_container ${menuShow}`}>
