@@ -1,0 +1,42 @@
+.do_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+  h1 {
+    text-align: center;
+    font-size: 36px;
+  }
+  .card {
+    display: flex;
+    .card-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      padding: 1rem 8px;
+      margin: 0 8px;
+      width: 33%;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      h2 {
+        margin-bottom: 10px;
+      }
+      p {
+        margin-bottom: 10px;
+        color: gray;
+        text-align: center;
+      }
+      i {
+        color: #0dcaf0;
+        font-size: 48px;
+      }
+    }
+  }
+}
