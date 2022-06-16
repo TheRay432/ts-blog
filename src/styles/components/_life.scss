@@ -1,0 +1,23 @@
+.life_container {
+  display: flex;
+  padding-top: 2rem;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.life_img {
+  width: 50%;
+  padding-right: 8px;
+}
+.life_right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+  h1 {
+    font-size: 36px;
+  }
+  p {
+    color: gray;
+    line-height: 2.5;
+  }
+}

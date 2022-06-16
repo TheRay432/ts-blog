@@ -19,6 +19,13 @@ img {
   max-width: 100%;
   height: auto;
 }
+.sectionBg {
+  width: 100%;
+  height: 1627px;
+  background-image: url("../images/bg_paper.png");
+}
 
 @import "./components/nav";
 @import "./components/feeling";
+@import "./components/life";
+@import "./components/dosomething";
