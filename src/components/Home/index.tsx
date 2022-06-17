@@ -3,6 +3,7 @@ import Develop from "./Develop";
 import DoSomething from "./DoSomething";
 import Feeling from "./Feeling";
 import Life from "./Life";
+import Skill from "./Skill";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <Life />
         <DoSomething />
         <Develop />
+        <Skill />
       </section>
     </>
   );
