@@ -45,3 +45,17 @@
     }
   }
 }
+
+//media
+@media (max-width: 798px) {
+  .do_container {
+    .card {
+      flex-wrap: wrap;
+      justify-content: center;
+      .card-item {
+        width: 80%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
