@@ -1,11 +1,11 @@
 import React from "react";
-import htmlIcon from "../../../images/HtmlIcon.svg";
-import cssIcon from "../../../images/CssIcon.svg";
-import tsIcon from "../../../images/typescript.svg";
-import reactIcon from "../../../images/ReactIcon.svg";
-import nodeIcon from "../../../images/icon-nodeJs.svg";
-import npmIcon from "../../../images/npmIcon.svg";
-import mongoIcon from "../../../images//MongoDBIcon.svg";
+import htmlIcon from "@/images/HtmlIcon.svg";
+import cssIcon from "@/images/CssIcon.svg";
+import tsIcon from "@/images/typescript.svg";
+import reactIcon from "@/images/ReactIcon.svg";
+import nodeIcon from "@/images/icon-nodeJs.svg";
+import npmIcon from "@/images/npmIcon.svg";
+import mongoIcon from "@/images//MongoDBIcon.svg";
 const Skill = () => {
   return (
     <>
