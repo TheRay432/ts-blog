@@ -1,5 +1,5 @@
 import React from "react";
-import infoImg from "../../../images/info.jpg";
+import infoImg from "@/images/info.jpg";
 const Life = () => {
   return (
     <>

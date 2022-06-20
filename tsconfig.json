@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@": ["./src"]
+      "@/*": ["src/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,5 +20,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/declaration.d.ts"]
+  "include": ["src", "src/declaration.d.ts", "src/**/*"]
 }

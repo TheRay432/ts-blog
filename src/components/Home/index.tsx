@@ -3,7 +3,7 @@ import Develop from "./Develop";
 import DoSomething from "./DoSomething";
 import Feeling from "./Feeling";
 import Life from "./Life";
-import Skill from "./Skill";
+import Skill from "@/components/Home/Skill";
 
 const Home = () => {
   return (
