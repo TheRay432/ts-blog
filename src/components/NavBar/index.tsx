@@ -1,17 +1,32 @@
-import { useEffect, useState } from "react";
+import { showModal } from "@/redux/slices/modal";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
+  const isM = useMediaQuery({
+    query: "(max-width:798px)",
+  });
   const handMunuToggle = (show: string) => {
     setMenuShow(show);
   };
+  const dispatch = useDispatch();
   useEffect(() => {
+    if (!isM) {
+      document.body.style.overflow = "unset";
+      return;
+    }
     if (menuShow) {
       document.body.style.overflow = "hidden";
       return;
     }
     document.body.style.overflow = "unset";
-  }, [menuShow]);
+  }, [menuShow, isM]);
+  const handShowModal = (e: React.MouseEvent, prop: string) => {
+    e.preventDefault();
+    dispatch(showModal(prop));
+  };
   return (
     <header className="header">
       <div className={`container nav_container ${menuShow}`}>
@@ -26,10 +41,18 @@ const NavBar = () => {
             <NavLink to="/">發文</NavLink>
           </ul>
           <div className="btn_group">
-            <Link className="loginBtn" to="/">
+            <Link
+              className="loginBtn"
+              to="/"
+              onClick={(e) => handShowModal(e, "login")}
+            >
               登入
             </Link>
-            <Link className="registerBtn" to="/">
+            <Link
+              className="registerBtn"
+              to="/"
+              onClick={(e) => handShowModal(e, "register")}
+            >
               註冊
             </Link>
           </div>

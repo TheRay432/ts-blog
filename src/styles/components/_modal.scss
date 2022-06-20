@@ -1,0 +1,135 @@
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 120;
+}
+
+.bg-active {
+  visibility: visible;
+  opacity: 1;
+}
+.modal {
+  background-color: white;
+  width: 30%;
+  opacity: 0;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  transform: scale(0.6);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.5s ease;
+  border-top: 5px solid #198754;
+  padding: 2rem 2rem;
+  h1 {
+    color: #198754;
+    font-size: 36px;
+  }
+  img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+}
+.border_blue {
+  border-top: 5px solid #0dcaf0;
+}
+.input_group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  label {
+    margin: 8px 0;
+  }
+  .fileLabel {
+    margin-top: 1rem;
+    background-color: #198754;
+    color: #fff;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    padding-left: 40px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0.2rem aqua;
+      border: 1px solid transparent;
+    }
+  }
+}
+.i_input {
+  position: relative;
+  i {
+    position: absolute;
+    font-size: 1rem;
+    left: 0;
+    top: 0;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+.modal.bg-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.modal_registerBtn {
+  background-color: #198754;
+  border: 1px solid #198754;
+  width: 50%;
+  margin-top: 2rem;
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal_loginBtn {
+  background-color: #0dcaf0;
+  border: 1px solid #0dcaf0;
+  width: 50%;
+  margin-top: 2rem;
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bi-x-circle {
+  font-size: 24px;
+  cursor: pointer;
+}
+.closeDiv {
+  width: 100%;
+  text-align: end;
+}
+
+@media (max-width: 1090px) {
+  .modal {
+    width: 50%;
+  }
+}
+@media (max-width: 789px) {
+  .modal {
+    width: 80%;
+  }
+}
