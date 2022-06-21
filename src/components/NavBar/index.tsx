@@ -47,7 +47,7 @@ const NavBar = () => {
           </div>
           <ul className="ul_list">
             <NavLink to="/">首頁</NavLink>
-            <NavLink to="/">貼文</NavLink>
+            <NavLink to="/postData">貼文</NavLink>
             <NavLink to="/">我的貼文</NavLink>
             <NavLink to="/">發文</NavLink>
             <NavLink to="/">登出</NavLink>
