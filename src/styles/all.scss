@@ -23,6 +23,12 @@ img {
   width: 100%;
   background-image: url("../images/bg_paper.png");
 }
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
 
 @import "./components/nav";
 @import "./components/feeling";
@@ -32,3 +38,4 @@ img {
 @import "./components/skill";
 @import "./components/footer";
 @import "./components/modal";
+@import "./components/post";
