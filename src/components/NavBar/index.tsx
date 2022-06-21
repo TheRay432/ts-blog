@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import userImg from "@/images/plan01.jpg";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
   const isM = useMediaQuery({
-    query: "(max-width:798px)",
+    query: "(max-width:940px)",
   });
   const handMunuToggle = (show: string) => {
     setMenuShow(show);
@@ -33,13 +34,29 @@ const NavBar = () => {
         <Link to="/" className="nav_left">
           <i className="bi bi-book-half"></i>Ray's Blog
         </Link>
+
         <div className="nav_right">
+          {/* {isM && (
+            <div className="userImg">
+              <img src={userImg} alt="" className="userImg" />
+            </div>
+          )} */}
+          <div className="nav_middle">
+            <i className="bi bi-search"></i>
+            <input type="search" placeholder="搜尋作者的文章..." />
+          </div>
           <ul className="ul_list">
             <NavLink to="/">首頁</NavLink>
             <NavLink to="/">貼文</NavLink>
             <NavLink to="/">我的貼文</NavLink>
             <NavLink to="/">發文</NavLink>
+            <NavLink to="/">登出</NavLink>
           </ul>
+          {/* {!isM && (
+            <div className="userImg">
+              <img src={userImg} alt="" className="userImg" />
+            </div>
+          )} */}
           <div className="btn_group">
             <Link
               className="loginBtn"
