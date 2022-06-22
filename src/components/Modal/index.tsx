@@ -3,6 +3,7 @@ import storage from "@/firebase";
 import { User } from "@/interfaces";
 import { closeLoading, showLoading } from "@/redux/slices/loading";
 import { closeModal, showModal } from "@/redux/slices/modal";
+import { initErrMsg, toLogin } from "@/redux/slices/User";
 import { RootState } from "@/redux/store";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +18,7 @@ export const Modal = () => {
   const { isShow, isLogin, isRegister } = useSelector(
     (state: RootState) => state.modalReducer
   );
+  const { loginErrMsg } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(closeModal());
@@ -27,6 +29,7 @@ export const Modal = () => {
       profilePicture: "",
     });
     setErrMsg("");
+    dispatch(initErrMsg());
   };
   const handLoadImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -81,11 +84,23 @@ export const Modal = () => {
       setErrMsg("請上傳你的大頭貼!");
     }
   };
+  const handLogin = () => {
+    dispatch(toLogin(userInfo));
+    setUserInfo({
+      username: "",
+      email: "",
+      password: "",
+      profilePicture: "",
+    });
+  };
   const handSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //註冊
     if (isRegister) {
       handRegister();
+    }
+    if (isLogin) {
+      handLogin();
     }
   };
 
@@ -141,7 +156,9 @@ export const Modal = () => {
             <label htmlFor="userEmail">信箱:</label>
             <div className="i_input">
               <input
-                className={errMsg === "信箱已註冊過!" ? "err" : ""}
+                className={`${errMsg === "信箱已註冊過!" ? "err" : ""} ${
+                  loginErrMsg ? "err" : ""
+                }`}
                 id="userEmail"
                 type="email"
                 value={userInfo.email}
@@ -154,9 +171,11 @@ export const Modal = () => {
             {errMsg === "信箱已註冊過!" && (
               <p style={{ color: "crimson" }}>{errMsg}</p>
             )}
+            {loginErrMsg && <p style={{ color: "crimson" }}>{loginErrMsg}</p>}
             <label htmlFor="userPassword">密碼:</label>
             <div className="i_input">
               <input
+                className={`${loginErrMsg ? "err" : ""}`}
                 id="userPassword"
                 type="text"
                 value={userInfo.password}
@@ -164,6 +183,7 @@ export const Modal = () => {
                 onChange={(e) => handInputChange(e, "password")}
                 required
               />
+              {loginErrMsg && <p style={{ color: "crimson" }}>{loginErrMsg}</p>}
               <i className="bi bi-key"></i>
             </div>
           </div>
@@ -173,7 +193,7 @@ export const Modal = () => {
             </button>
           )}
           {isLogin && (
-            <button type="button" className="modal_loginBtn">
+            <button type="submit" className="modal_loginBtn">
               登入
             </button>
           )}
