@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import Footer from "./components/Footer";
+import Loading from "./components/Loading";
 import { Modal } from "./components/Modal";
 import NavBar from "./components/NavBar";
 import routes from "./routes";
@@ -12,6 +13,7 @@ function App() {
       {element}
       <Footer />
       <Modal />
+      <Loading />
     </>
   );
 }

@@ -1,7 +1,8 @@
 import { apiRegisterRequest } from "@/api/Auth";
 import storage from "@/firebase";
 import { User } from "@/interfaces";
-import { closeModal } from "@/redux/slices/modal";
+import { closeLoading, showLoading } from "@/redux/slices/loading";
+import { closeModal, showModal } from "@/redux/slices/modal";
 import { RootState } from "@/redux/store";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,6 +41,7 @@ export const Modal = () => {
   };
   const handRegister = () => {
     if (userInfo.profilePicture) {
+      dispatch(showLoading());
       const uploadTask = storage
         .ref(`images/${new Date().getTime() + userInfo.profilePicture.name}`)
         .put(userInfo.profilePicture);
@@ -54,6 +56,9 @@ export const Modal = () => {
             const url = await uploadTask.snapshot.ref.getDownloadURL();
             userInfo.profilePicture = url;
             const res = await apiRegisterRequest(userInfo);
+            handleClose();
+            dispatch(closeLoading());
+            dispatch(showModal("login"));
             console.log(res.data);
           } catch (err: any) {
             setUserInfo({
@@ -62,6 +67,7 @@ export const Modal = () => {
               password: "",
               profilePicture: "",
             });
+            dispatch(closeLoading());
           }
         }
       );
