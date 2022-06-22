@@ -7,3 +7,11 @@ const AuthRequest = axios.create({
 
 export const apiRegisterRequest = (user: User) =>
   AuthRequest.post("/register", user);
+
+export const apiLoginRequest = async (user: any) => {
+  try {
+    return await AuthRequest.post("/login", user);
+  } catch (error) {
+    return error;
+  }
+};
