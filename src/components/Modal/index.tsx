@@ -13,6 +13,7 @@ export const Modal = () => {
     password: "",
     profilePicture: "",
   });
+  const [errMsg, setErrMsg] = useState("");
   const { isShow, isLogin, isRegister } = useSelector(
     (state: RootState) => state.modalReducer
   );
@@ -25,12 +26,14 @@ export const Modal = () => {
       password: "",
       profilePicture: "",
     });
+    setErrMsg("");
   };
   const handLoadImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       setUserInfo({ ...userInfo, profilePicture: "" });
     } else {
       setUserInfo({ ...userInfo, profilePicture: e.target.files[0] });
+      setErrMsg("");
     }
   };
   const handInputChange = (
@@ -67,12 +70,15 @@ export const Modal = () => {
               password: "",
               profilePicture: "",
             });
+            if (err.response.data) {
+              setErrMsg(err.response.data);
+            }
             dispatch(closeLoading());
           }
         }
       );
     } else {
-      console.log("請上傳你的大頭貼!");
+      setErrMsg("請上傳你的大頭貼!");
     }
   };
   const handSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -108,6 +114,9 @@ export const Modal = () => {
                 <label htmlFor="userImg" className="fileLabel">
                   <i className="bi bi-card-image"></i>上傳你的大頭貼
                 </label>
+                {errMsg === "請上傳你的大頭貼!" && (
+                  <p style={{ color: "crimson" }}>{errMsg}</p>
+                )}
                 <input
                   id="userImg"
                   type="file"
@@ -132,6 +141,7 @@ export const Modal = () => {
             <label htmlFor="userEmail">信箱:</label>
             <div className="i_input">
               <input
+                className={errMsg === "信箱已註冊過!" ? "err" : ""}
                 id="userEmail"
                 type="email"
                 value={userInfo.email}
@@ -141,6 +151,9 @@ export const Modal = () => {
               />
               <i className="bi bi-envelope"></i>
             </div>
+            {errMsg === "信箱已註冊過!" && (
+              <p style={{ color: "crimson" }}>{errMsg}</p>
+            )}
             <label htmlFor="userPassword">密碼:</label>
             <div className="i_input">
               <input
