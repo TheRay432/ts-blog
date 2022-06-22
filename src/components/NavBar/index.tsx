@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import userImg from "@/images/plan01.jpg";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
   const isM = useMediaQuery({
