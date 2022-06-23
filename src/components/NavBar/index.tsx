@@ -1,8 +1,10 @@
 import { showModal } from "@/redux/slices/modal";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { logOut } from "@/redux/slices/User";
+import { RootState } from "@/redux/store";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
   const isM = useMediaQuery({
@@ -11,6 +13,7 @@ const NavBar = () => {
   const handMunuToggle = (show: string) => {
     setMenuShow(show);
   };
+  const { user } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!isM) {
@@ -27,6 +30,10 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(showModal(prop));
   };
+  const handLogout = () => {
+    localStorage.removeItem("tsBlogUser");
+    window.location.reload();
+  };
   return (
     <header className="header">
       <div className={`container nav_container ${menuShow}`}>
@@ -35,11 +42,11 @@ const NavBar = () => {
         </Link>
 
         <div className="nav_right">
-          {/* {isM && (
+          {isM && user.email && (
             <div className="userImg">
-              <img src={userImg} alt="" className="userImg" />
+              <img src={user.profilePicture} alt="" className="userImg" />
             </div>
-          )} */}
+          )}
           <div className="nav_middle">
             <i className="bi bi-search"></i>
             <input type="search" placeholder="搜尋作者的文章..." />
@@ -49,29 +56,35 @@ const NavBar = () => {
             <NavLink to="/postData">貼文</NavLink>
             <NavLink to="/">我的貼文</NavLink>
             <NavLink to="/">發文</NavLink>
-            <NavLink to="/">登出</NavLink>
+            {user.email && (
+              <NavLink to="/" onClick={handLogout}>
+                登出
+              </NavLink>
+            )}
           </ul>
-          {/* {!isM && (
+          {!isM && user.email && (
             <div className="userImg">
-              <img src={userImg} alt="" className="userImg" />
+              <img src={user.profilePicture} alt="" className="userImg" />
             </div>
-          )} */}
-          <div className="btn_group">
-            <Link
-              className="loginBtn"
-              to="/"
-              onClick={(e) => handShowModal(e, "login")}
-            >
-              登入
-            </Link>
-            <Link
-              className="registerBtn"
-              to="/"
-              onClick={(e) => handShowModal(e, "register")}
-            >
-              註冊
-            </Link>
-          </div>
+          )}
+          {!user.email && (
+            <div className="btn_group">
+              <Link
+                className="loginBtn"
+                to="/"
+                onClick={(e) => handShowModal(e, "login")}
+              >
+                登入
+              </Link>
+              <Link
+                className="registerBtn"
+                to="/"
+                onClick={(e) => handShowModal(e, "register")}
+              >
+                註冊
+              </Link>
+            </div>
+          )}
         </div>
         <i className="bi bi-list" onClick={() => handMunuToggle("show")}></i>
         <i className="bi bi-x" onClick={() => handMunuToggle("")}></i>
