@@ -30,9 +30,12 @@ const UserSlice = createSlice({
     initErrMsg: (state) => {
       state.loginErrMsg = "";
     },
+    logOut: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { toLogin, loginSuccess, loginError, initErrMsg } =
+export const { toLogin, loginSuccess, loginError, initErrMsg, logOut } =
   UserSlice.actions;
 export default UserSlice.reducer;
