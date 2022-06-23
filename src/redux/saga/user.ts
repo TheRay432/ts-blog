@@ -8,6 +8,7 @@ function* workLogin(action: any): Generator<StrictEffect, any, any> {
   yield put(showLoading());
   const res = yield call(apiLoginRequest, action.payload);
   if (res.status === 200) {
+    localStorage.setItem("tsBlogUser", JSON.stringify(res.data));
     yield put(loginSuccess(res.data));
     yield put(closeLoading());
     yield put(closeModal());
