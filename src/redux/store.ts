@@ -2,12 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from "./slices/modal";
 import userReducer from "./slices/User";
 import loadingReducer from "./slices/loading";
+import postReducer from "./slices/post";
 import createSagaMiddleware from "@redux-saga/core";
-import { userSaga } from "./saga/user";
+import { rootSaga } from "./saga";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
-  reducer: { modalReducer, userReducer, loadingReducer },
+  reducer: { modalReducer, userReducer, loadingReducer, postReducer },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
       sagaMiddleware
@@ -15,7 +16,7 @@ const store = configureStore({
   },
 });
 
-sagaMiddleware.run(userSaga);
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export default store;

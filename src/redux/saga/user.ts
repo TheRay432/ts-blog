@@ -15,8 +15,8 @@ function* workLogin(action: any): Generator<StrictEffect, any, any> {
   } else {
     if (res.response.data) {
       yield put(loginError(res.response.data));
-      yield put(closeLoading());
     }
+    yield put(closeLoading());
   }
 }
 

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import { logOut } from "@/redux/slices/User";
 import { RootState } from "@/redux/store";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
