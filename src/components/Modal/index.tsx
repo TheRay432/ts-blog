@@ -18,9 +18,7 @@ export const Modal = () => {
   const { isShow, isLogin, isRegister } = useSelector(
     (state: RootState) => state.modalReducer
   );
-  const { loginErrMsg, user } = useSelector(
-    (state: RootState) => state.userReducer
-  );
+  const { loginErrMsg } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {

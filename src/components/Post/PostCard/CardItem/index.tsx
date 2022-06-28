@@ -1,31 +1,29 @@
 import React from "react";
-import postImg from "@/images/plan01.jpg";
 import { Link } from "react-router-dom";
-const CardItem = () => {
+import { PostsProps } from "@/interfaces";
+import moment from "moment";
+import "moment/locale/zh-tw";
+const CardItem: React.FC<PostsProps> = ({ post }) => {
   return (
     <>
-      <div className="post-card-item">
+      <div className="post-card-item ">
         <div className="post-card">
           <div className="img-container">
-            <img src={postImg} alt="" />
+            <img src={post.postPhoto} alt="" />
           </div>
           <div className="card-content">
             <div className="card-content-top">
               <div className="card-userName">
                 <i className="bi bi-person"></i>
-                ray
+                {post.username}
               </div>
               <div className="card-time">
                 <i className="bi bi-alarm"></i>
-                3天前
+                {moment(post.date).fromNow()}
               </div>
             </div>
-            <h1>OKOK</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-              odio hic reiciendis quo, ab sunt sapiente harum. Ipsum nam at
-              dolorem quam reprehenderit ullam corporis.
-            </p>
+            <h1>{post.title}</h1>
+            <p>{post.desc}</p>
             <Link to="/">查看更多</Link>
           </div>
         </div>
