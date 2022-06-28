@@ -7,3 +7,17 @@ export interface User {
   date?: string;
   __v?: number;
 }
+
+export interface Post {
+  _id?: string;
+  title: string;
+  desc: string;
+  postPhoto: string;
+  username: string;
+  email: string;
+  date?: string;
+  __v?: number;
+}
+export interface PostsProps {
+  post: Post;
+}

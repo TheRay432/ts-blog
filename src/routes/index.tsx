@@ -9,7 +9,7 @@ const routes: RouteObject[] = [
     children: [],
   },
   {
-    path: "postData",
+    path: "/postData",
     element: <PostPage />,
     children: [],
   },

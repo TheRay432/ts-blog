@@ -7,6 +7,7 @@
   width: 70%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 .post-card-item {
   width: 50%;
@@ -34,6 +35,38 @@
     &:hover {
       transform: scale(1.5);
     }
+  }
+}
+.postLoading_img {
+  width: 100%;
+  height: 285px;
+  border-radius: 5%;
+}
+.postLoadingText {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.postLoading_userInfo {
+  width: 80px;
+  height: 20px;
+  border-radius: 5%;
+}
+.skeleton {
+  background: linear-gradient(to right, #dedede 8%, #f3f3f3 18%, #dedede 33%);
+  background-size: 200% 15px;
+  animation: skeleton 1s infinite;
+}
+.tt {
+  height: fit-content;
+}
+@keyframes skeleton {
+  from {
+    background-position: 100%;
+  }
+  to {
+    background-position: -80%;
   }
 }
 .card-content {
@@ -169,5 +202,6 @@
 @media (max-width: 590px) {
   .post-card-item {
     width: 100%;
+    padding-right: 0;
   }
 }
