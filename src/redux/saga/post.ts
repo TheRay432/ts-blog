@@ -1,6 +1,11 @@
-import { apiGetPostRequest } from "@/api/Post";
+import { apiAddPostRequest, apiGetPostRequest } from "@/api/Post";
 import { takeLatest, call, put, StrictEffect } from "redux-saga/effects";
-import { fetchPostData, showErrMsg, showPostData } from "../slices/post";
+import {
+  addPostData,
+  fetchPostData,
+  showErrMsg,
+  showPostData,
+} from "../slices/post";
 
 function* workFetchPostData(): Generator<StrictEffect, any, any> {
   const res = yield call(apiGetPostRequest);
@@ -15,4 +20,19 @@ function* workFetchPostData(): Generator<StrictEffect, any, any> {
 
 export function* postSaga() {
   yield takeLatest(fetchPostData, workFetchPostData);
+}
+
+function* workAddPost(action: any): Generator<StrictEffect, any, any> {
+  const res = yield call(apiAddPostRequest, action.payload);
+  if (res.status === 200) {
+    console.log(1);
+  } else {
+    if (res.response.data) {
+      yield put(showErrMsg(res.response.data));
+    }
+  }
+}
+
+export function* testSaga() {
+  yield takeLatest(addPostData, workAddPost);
 }

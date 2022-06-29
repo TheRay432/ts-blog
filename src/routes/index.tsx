@@ -1,5 +1,6 @@
 import HomePage from "@/pages/HomePage";
 import PostPage from "@/pages/PostPage";
+import WritePage from "@/pages/WritePage";
 import { RouteObject } from "react-router-dom";
 
 const routes: RouteObject[] = [
@@ -11,6 +12,11 @@ const routes: RouteObject[] = [
   {
     path: "/postData",
     element: <PostPage />,
+    children: [],
+  },
+  {
+    path: "/write",
+    element: <WritePage />,
     children: [],
   },
 ];

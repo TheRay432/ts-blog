@@ -39,6 +39,10 @@ export const Modal = () => {
     setErrMsg("");
     dispatch(initErrMsg());
   };
+  const handFileClick = (e: any) => {
+    setUserInfo({ ...userInfo, profilePicture: "" });
+    e.target.value = null;
+  };
   const handLoadImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       setUserInfo({ ...userInfo, profilePicture: "" });
@@ -47,6 +51,7 @@ export const Modal = () => {
       setErrMsg("");
     }
   };
+
   const handInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     prop: string
@@ -145,7 +150,7 @@ export const Modal = () => {
                   type="file"
                   style={{ display: "none" }}
                   onChange={(e) => handLoadImg(e)}
-                  onClick={(e: any) => (e.target.value = null)}
+                  onClick={(e: any) => handFileClick(e)}
                 />
                 <label htmlFor="userName">姓名:</label>
                 <div className="i_input">

@@ -22,14 +22,24 @@ const postSlice = createSlice({
     },
     showPostData: (state, action) => {
       state.isFetch = false;
-      state.posts = action.payload;
+      state.posts = action.payload.reverse();
     },
     showErrMsg: (state, action) => {
       state.isFetch = false;
       state.postErrMsg = action.payload;
     },
+    hideErrMsg: (state, action) => {
+      state.postErrMsg = action.payload;
+    },
+    addPostData: (state, action) => {},
   },
 });
 
-export const { fetchPostData, showPostData, showErrMsg } = postSlice.actions;
+export const {
+  fetchPostData,
+  showPostData,
+  showErrMsg,
+  hideErrMsg,
+  addPostData,
+} = postSlice.actions;
 export default postSlice.reducer;
