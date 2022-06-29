@@ -12,7 +12,7 @@ export interface Post {
   _id?: string;
   title: string;
   desc: string;
-  postPhoto: string;
+  postPhoto: any;
   username: string;
   email: string;
   date?: string;

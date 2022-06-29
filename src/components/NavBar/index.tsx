@@ -54,7 +54,7 @@ const NavBar = () => {
             <NavLink to="/">首頁</NavLink>
             <NavLink to="/postData">貼文</NavLink>
             <NavLink to="/">我的貼文</NavLink>
-            <NavLink to="/">發文</NavLink>
+            <NavLink to="/write">發文</NavLink>
             {user.email && (
               <NavLink to="/" onClick={handLogout}>
                 登出
