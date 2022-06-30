@@ -20,3 +20,11 @@ export const apiAddPostRequest = async (post: Post) => {
     return error;
   }
 };
+
+export const apiGetMyPostRequest = async (id: string) => {
+  try {
+    return await PostRequest.get(`/userEmail/${id}`);
+  } catch (error) {
+    return error;
+  }
+};

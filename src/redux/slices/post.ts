@@ -20,6 +20,9 @@ const postSlice = createSlice({
     fetchPostData: (state) => {
       state.isFetch = true;
     },
+    fetchMyPostData: (state, action) => {
+      state.isFetch = true;
+    },
     showPostData: (state, action) => {
       state.isFetch = false;
       state.posts = action.payload.reverse();
@@ -41,5 +44,6 @@ export const {
   showErrMsg,
   hideErrMsg,
   addPostData,
+  fetchMyPostData,
 } = postSlice.actions;
 export default postSlice.reducer;

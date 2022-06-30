@@ -29,9 +29,13 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(showModal(prop));
   };
-  const handLogout = () => {
+  const handLogout = (e: React.MouseEvent) => {
+    e.preventDefault();
     localStorage.removeItem("tsBlogUser");
     window.location.reload();
+  };
+  const scrollTop = () => {
+    window.scrollTo(0, 0);
   };
   return (
     <header className="header">
@@ -51,12 +55,20 @@ const NavBar = () => {
             <input type="search" placeholder="搜尋作者的文章..." />
           </div>
           <ul className="ul_list">
-            <NavLink to="/">首頁</NavLink>
-            <NavLink to="/postData">貼文</NavLink>
-            <NavLink to="/">我的貼文</NavLink>
-            <NavLink to="/write">發文</NavLink>
+            <NavLink onClick={scrollTop} to="/">
+              首頁
+            </NavLink>
+            <NavLink onClick={scrollTop} to="/postData">
+              貼文
+            </NavLink>
+            <NavLink onClick={scrollTop} to="/mypost">
+              我的貼文
+            </NavLink>
+            <NavLink onClick={scrollTop} to="/write">
+              發文
+            </NavLink>
             {user.email && (
-              <NavLink to="/" onClick={handLogout}>
+              <NavLink to="/logout" onClick={(e) => handLogout(e)}>
                 登出
               </NavLink>
             )}
