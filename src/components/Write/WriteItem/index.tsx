@@ -5,6 +5,7 @@ import { RootState } from "@/redux/store";
 import { closeLoading, showLoading } from "@/redux/slices/loading";
 import storage from "@/firebase";
 import { addPostData, hideErrMsg, showErrMsg } from "@/redux/slices/post";
+import { useNavigate } from "react-router-dom";
 const WriteItem = () => {
   const [postInfo, setPostInfo] = useState<Post>({
     title: "",
@@ -16,11 +17,22 @@ const WriteItem = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
   const { postErrMsg } = useSelector((state: RootState) => state.postReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     if (user.email) {
       setPostInfo({ ...postInfo, username: user.username, email: user.email });
     }
   }, [user]);
+
+  const init = () => {
+    setPostInfo({
+      title: "",
+      desc: "",
+      postPhoto: "",
+      username: "",
+      email: "",
+    });
+  };
   const handFileClick = (e: any) => {
     setPostInfo({ ...postInfo, postPhoto: "" });
     e.target.value = null;
@@ -59,10 +71,13 @@ const WriteItem = () => {
             const url = await uploadTask.snapshot.ref.getDownloadURL();
             postInfo.postPhoto = url;
             dispatch(addPostData(postInfo));
+            init();
             dispatch(closeLoading());
+            navigate("/mypost");
           } catch (err: any) {
             if (err.response.data) {
               dispatch(closeLoading());
+              init();
             }
           }
         }
@@ -90,6 +105,7 @@ const WriteItem = () => {
           onClick={(e: any) => handFileClick(e)}
         />
         <input
+          value={postInfo.title}
           type="text"
           placeholder="標題..."
           onChange={(e) => handleChange(e, "title")}
@@ -98,6 +114,7 @@ const WriteItem = () => {
       </div>
       {postErrMsg && <span style={{ color: "crimson" }}>{postErrMsg}</span>}
       <textarea
+        value={postInfo.desc}
         className="write_textArea"
         id=""
         cols={30}
