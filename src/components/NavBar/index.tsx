@@ -1,7 +1,7 @@
 import { showModal } from "@/redux/slices/modal";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "@/redux/store";
 const NavBar = () => {
@@ -14,6 +14,7 @@ const NavBar = () => {
   };
   const { user } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!isM) {
       document.body.style.overflow = "unset";
@@ -34,8 +35,14 @@ const NavBar = () => {
     localStorage.removeItem("tsBlogUser");
     window.location.reload();
   };
-  const scrollTop = () => {
+  const scrollTop = (e: React.MouseEvent, prop: string) => {
     window.scrollTo(0, 0);
+    if (!user.email && (prop === "/mypost" || prop === "/write")) {
+      e.preventDefault();
+      dispatch(showModal("login"));
+      return;
+    }
+    navigate(`${prop}`);
   };
   return (
     <header className="header">
@@ -55,16 +62,16 @@ const NavBar = () => {
             <input type="search" placeholder="搜尋作者的文章..." />
           </div>
           <ul className="ul_list">
-            <NavLink onClick={scrollTop} to="/">
+            <NavLink onClick={(e) => scrollTop(e, "/")} to="/">
               首頁
             </NavLink>
-            <NavLink onClick={scrollTop} to="/postData">
+            <NavLink onClick={(e) => scrollTop(e, "/postData")} to="/postData">
               貼文
             </NavLink>
-            <NavLink onClick={scrollTop} to="/mypost">
+            <NavLink onClick={(e) => scrollTop(e, "/mypost")} to="/mypost">
               我的貼文
             </NavLink>
-            <NavLink onClick={scrollTop} to="/write">
+            <NavLink onClick={(e) => scrollTop(e, "/write")} to="/write">
               發文
             </NavLink>
             {user.email && (
