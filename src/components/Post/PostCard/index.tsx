@@ -1,8 +1,9 @@
+import NoData from "@/components/NoData";
 import { fetchMyPostData, fetchPostData } from "@/redux/slices/post";
 import { RootState } from "@/redux/store";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CardItem from "./CardItem";
 import PostLoading from "./PostLoading";
 
@@ -13,14 +14,16 @@ const PostCard = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   const location = useLocation();
+  const { search } = useLocation();
+
   useEffect(() => {
     const path = location.pathname.split("/")[1];
     if (path === "postData") {
-      dispatch(fetchPostData());
+      dispatch(fetchPostData(search));
     } else if (path === "mypost") {
       dispatch(fetchMyPostData(user.email));
     }
-  }, [dispatch, user, location]);
+  }, [dispatch, user, location, search]);
   return (
     <>
       <div className="postCard">
@@ -41,6 +44,7 @@ const PostCard = () => {
             })}
           </>
         )}
+        {!isFetch && posts.length === 0 && <NoData />}
       </div>
     </>
   );

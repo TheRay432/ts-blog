@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "@/redux/store";
+import { addPath, fetchPostData } from "@/redux/slices/post";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
+  const [searchPath, setSearchPath] = useState("");
   const isM = useMediaQuery({
     query: "(max-width:940px)",
   });
-  const handMunuToggle = (show: string) => {
-    setMenuShow(show);
-  };
+
   const { user } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +26,9 @@ const NavBar = () => {
     }
     document.body.style.overflow = "unset";
   }, [menuShow, isM]);
+  const handMunuToggle = (show: string) => {
+    setMenuShow(show);
+  };
   const handShowModal = (e: React.MouseEvent, prop: string) => {
     e.preventDefault();
     dispatch(showModal(prop));
@@ -44,6 +47,13 @@ const NavBar = () => {
     }
     navigate(`${prop}`);
   };
+  const handKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigate(`/postData?user=${searchPath}`);
+      dispatch(addPath(searchPath));
+      setSearchPath("");
+    }
+  };
   return (
     <header className="header">
       <div className={`container nav_container ${menuShow}`}>
@@ -59,7 +69,13 @@ const NavBar = () => {
           )}
           <div className="nav_middle">
             <i className="bi bi-search"></i>
-            <input type="search" placeholder="搜尋作者的文章..." />
+            <input
+              type="search"
+              value={searchPath}
+              placeholder="搜尋作者的文章..."
+              onChange={(e) => setSearchPath(e.target.value)}
+              onKeyDown={(e) => handKeyDown(e)}
+            />
           </div>
           <ul className="ul_list">
             <NavLink onClick={(e) => scrollTop(e, "/")} to="/">

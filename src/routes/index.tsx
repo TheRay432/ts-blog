@@ -16,6 +16,11 @@ const routes: RouteObject[] = [
     children: [],
   },
   {
+    path: "/postData/:id",
+    element: <PostPage />,
+    children: [],
+  },
+  {
     path: "/write",
     element: <WritePage />,
     children: [],

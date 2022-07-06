@@ -12,8 +12,8 @@ import {
   showPostData,
 } from "../slices/post";
 
-function* workFetchPostData(): Generator<StrictEffect, any, any> {
-  const res = yield call(apiGetPostRequest);
+function* workFetchPostData(action: any): Generator<StrictEffect, any, any> {
+  const res = yield call(apiGetPostRequest, action.payload);
   if (res.status === 200) {
     yield put(showPostData(res.data));
   } else {
