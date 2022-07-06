@@ -5,9 +5,9 @@ const PostRequest = axios.create({
   baseURL: "http://localhost:5050/api/posts",
 });
 
-export const apiGetPostRequest = async () => {
+export const apiGetPostRequest = async (search: string) => {
   try {
-    return await PostRequest.get("/");
+    return await PostRequest.get("/" + search);
   } catch (error) {
     return error;
   }

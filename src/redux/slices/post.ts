@@ -5,19 +5,21 @@ interface InitialState {
   posts: Post[];
   isFetch: boolean;
   postErrMsg: string;
+  searchPath: string;
 }
 
 const initialState: InitialState = {
   posts: [],
   isFetch: false,
   postErrMsg: "",
+  searchPath: "",
 };
 
 const postSlice = createSlice({
   name: "postSlice",
   initialState,
   reducers: {
-    fetchPostData: (state) => {
+    fetchPostData: (state, action) => {
       state.isFetch = true;
     },
     fetchMyPostData: (state, action) => {
@@ -35,6 +37,9 @@ const postSlice = createSlice({
       state.postErrMsg = action.payload;
     },
     addPostData: (state, action) => {},
+    addPath: (state, action) => {
+      state.searchPath = action.payload;
+    },
   },
 });
 
@@ -45,5 +50,6 @@ export const {
   hideErrMsg,
   addPostData,
   fetchMyPostData,
+  addPath,
 } = postSlice.actions;
 export default postSlice.reducer;
