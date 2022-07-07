@@ -2,7 +2,7 @@ import { Post } from "@/interfaces";
 import axios from "axios";
 
 const PostRequest = axios.create({
-  baseURL: "http://localhost:5050/api/posts",
+  baseURL: "https://tsblog-project.herokuapp.com/api/posts",
 });
 
 export const apiGetPostRequest = async (search: string) => {
