@@ -1,0 +1,37 @@
+.onepostItem {
+  width: 70%;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  img {
+    height: 600px;
+    object-fit: cover;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 1rem;
+    color: aqua;
+  }
+  .onepostInfo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .author {
+      display: flex;
+      align-items: center;
+      color: #ffc107;
+    }
+    .time {
+      display: flex;
+      align-items: center;
+      color: #198754;
+    }
+  }
+  .omepost_desc {
+    color: gray;
+    line-height: 2;
+    font-size: 20px;
+    margin-top: 1rem;
+  }
+}

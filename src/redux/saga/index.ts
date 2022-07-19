@@ -1,5 +1,10 @@
 import { all, fork } from "redux-saga/effects";
-import { fetchMyPostDataSaga, postSaga, testSaga } from "./post";
+import {
+  fetchIdPostSaga,
+  fetchMyPostDataSaga,
+  postSaga,
+  testSaga,
+} from "./post";
 import { userSaga } from "./user";
 
 export function* rootSaga() {
@@ -8,5 +13,6 @@ export function* rootSaga() {
     fork(postSaga),
     fork(testSaga),
     fork(fetchMyPostDataSaga),
+    fork(fetchIdPostSaga),
   ]);
 }
