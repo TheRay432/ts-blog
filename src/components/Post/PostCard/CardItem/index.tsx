@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PostsProps } from "@/interfaces";
 import moment from "moment";
 import "moment/locale/zh-tw";
+import { useDispatch } from "react-redux";
+import { clearOnePost } from "@/redux/slices/post";
 const CardItem: React.FC<PostsProps> = ({ post }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleSinglePost = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(clearOnePost());
+    navigate(`/postData/${post._id}`);
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       <div className="post-card-item ">
@@ -24,7 +34,9 @@ const CardItem: React.FC<PostsProps> = ({ post }) => {
             </div>
             <h1>{post.title}</h1>
             <p>{post.desc}</p>
-            <Link to="/">查看更多</Link>
+            <Link to="/" onClick={(e) => handleSinglePost(e)}>
+              查看更多
+            </Link>
           </div>
         </div>
       </div>

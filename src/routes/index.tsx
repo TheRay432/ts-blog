@@ -1,5 +1,6 @@
 import HomePage from "@/pages/HomePage";
 import MyPost from "@/pages/MyPost";
+import OnePost from "@/pages/OnePost";
 import PostPage from "@/pages/PostPage";
 import WritePage from "@/pages/WritePage";
 import { RouteObject } from "react-router-dom";
@@ -17,7 +18,7 @@ const routes: RouteObject[] = [
   },
   {
     path: "/postData/:id",
-    element: <PostPage />,
+    element: <OnePost />,
     children: [],
   },
   {
