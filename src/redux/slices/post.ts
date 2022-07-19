@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
   posts: Post[];
+  onePost: Post;
   isFetch: boolean;
   postErrMsg: string;
   searchPath: string;
@@ -10,6 +11,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   posts: [],
+  onePost: { title: "", desc: "", postPhoto: "", username: "", email: "" },
   isFetch: false,
   postErrMsg: "",
   searchPath: "",
@@ -40,6 +42,19 @@ const postSlice = createSlice({
     addPath: (state, action) => {
       state.searchPath = action.payload;
     },
+    fetchIdPostData: (state, action) => {},
+    showIdPostData: (state, action) => {
+      state.onePost = action.payload;
+    },
+    clearOnePost: (state) => {
+      state.onePost = {
+        title: "",
+        desc: "",
+        postPhoto: "",
+        username: "",
+        email: "",
+      };
+    },
   },
 });
 
@@ -51,5 +66,8 @@ export const {
   addPostData,
   fetchMyPostData,
   addPath,
+  fetchIdPostData,
+  showIdPostData,
+  clearOnePost,
 } = postSlice.actions;
 export default postSlice.reducer;

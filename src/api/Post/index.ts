@@ -2,7 +2,7 @@ import { Post } from "@/interfaces";
 import axios from "axios";
 
 const PostRequest = axios.create({
-  baseURL: "https://tsblog-project.herokuapp.com/api/posts",
+  baseURL: "http://localhost:5050/api/posts",
 });
 
 export const apiGetPostRequest = async (search: string) => {
@@ -21,9 +21,19 @@ export const apiAddPostRequest = async (post: Post) => {
   }
 };
 
-export const apiGetMyPostRequest = async (id: string) => {
+export const apiGetMyPostRequest = async (email: string) => {
   try {
-    return await PostRequest.get(`/userEmail/${id}`);
+    return await PostRequest.get(`/userEmail/${email}`);
+  } catch (error) {
+    return error;
+  }
+};
+
+export const apiGetIdPostRequest = async (id: string) => {
+  try {
+    return await (
+      await PostRequest.get(`/${id}`)
+    ).data;
   } catch (error) {
     return error;
   }
