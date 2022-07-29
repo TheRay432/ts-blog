@@ -3,17 +3,23 @@ import {
   apiGetMyPostRequest,
   apiGetPostRequest,
   apiGetIdPostRequest,
+  apiUpdateByIdRequest,
+  apiDeletePostRequst,
 } from "@/api/Post";
 import { takeLatest, call, put, StrictEffect } from "redux-saga/effects";
 import { closeLoading, showLoading } from "../slices/loading";
 import {
   addPostData,
+  deletePostData,
+  deletePostDataSuccess,
   fetchIdPostData,
   fetchMyPostData,
   fetchPostData,
   showErrMsg,
   showIdPostData,
   showPostData,
+  updatePostData,
+  updatePostDataSuccess,
 } from "../slices/post";
 
 function* workFetchPostData(action: any): Generator<StrictEffect, any, any> {
@@ -62,6 +68,20 @@ export function* workFetchIdPost(
   yield put(showIdPostData(onePost));
   yield put(closeLoading());
 }
+export function* workUpdatePost(
+  action: any
+): Generator<StrictEffect, any, any> {
+  yield put(showLoading());
+  const updateData = yield call(apiUpdateByIdRequest, action.payload);
+  yield put(updatePostDataSuccess(updateData));
+  yield put(closeLoading());
+}
+export function* workDeletePostData(action: any) {
+  yield put(showLoading());
+  yield call(apiDeletePostRequst, action.payload);
+  yield put(deletePostDataSuccess());
+  yield put(closeLoading());
+}
 
 export function* fetchIdPostSaga() {
   yield takeLatest(fetchIdPostData, workFetchIdPost);
@@ -69,4 +89,10 @@ export function* fetchIdPostSaga() {
 
 export function* fetchMyPostDataSaga() {
   yield takeLatest(fetchMyPostData, workFetchMyPost);
+}
+export function* updatePostSaga() {
+  yield takeLatest(updatePostData, workUpdatePost);
+}
+export function* deletePostSaga() {
+  yield takeLatest(deletePostData, workDeletePostData);
 }

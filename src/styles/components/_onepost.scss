@@ -34,4 +34,98 @@
     font-size: 20px;
     margin-top: 1rem;
   }
+  .editDIV {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .bi-x-circle {
+    margin-right: 8px;
+    font-size: 12px;
+  }
+  input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0.2rem aqua;
+      border: 1px solid transparent;
+    }
+  }
+  textarea {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0.2rem aqua;
+      border: 1px solid transparent;
+    }
+  }
+}
+.onePost_edit {
+  color: #198754;
+  border: 1px solid #198754;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  transition: all 0.5s ease;
+  text-align: center;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.onePost_delete {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  transition: all 0.5s ease;
+  text-align: center;
+  cursor: pointer;
+}
+.onePost_cancel {
+  color: #ffc107;
+  border: 1px solid #ffc107;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  transition: all 0.5s ease;
+  text-align: center;
+  cursor: pointer;
+}
+.bi-pencil {
+  margin-right: 8px;
+  font-size: 12px;
+}
+.bi-trash3 {
+  margin-right: 8px;
+  font-size: 12px;
+}
+.onePost_check {
+  color: #198754;
+  border: 1px solid #198754;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  transition: all 0.5s ease;
+  text-align: center;
+  margin-top: 2rem;
+  width: 25%;
+  cursor: pointer;
 }
