@@ -13,6 +13,7 @@ import {
   deletePostData,
   deletePostDataSuccess,
   fetchIdPostData,
+  fetchIdPostDataError,
   fetchMyPostData,
   fetchPostData,
   showErrMsg,
@@ -65,7 +66,12 @@ export function* workFetchIdPost(
 ): Generator<StrictEffect, any, any> {
   yield put(showLoading());
   const onePost = yield call(apiGetIdPostRequest, action.payload);
-  yield put(showIdPostData(onePost));
+  if (onePost.status === 200) {
+    yield put(showIdPostData(onePost.data));
+  } else {
+    yield put(fetchIdPostDataError());
+  }
+
   yield put(closeLoading());
 }
 export function* workUpdatePost(

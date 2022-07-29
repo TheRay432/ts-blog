@@ -7,6 +7,7 @@ interface InitialState {
   isFetch: boolean;
   postErrMsg: string;
   searchPath: string;
+  isErr: boolean;
 }
 
 const initialState: InitialState = {
@@ -15,6 +16,7 @@ const initialState: InitialState = {
   isFetch: false,
   postErrMsg: "",
   searchPath: "",
+  isErr: false,
 };
 
 const postSlice = createSlice({
@@ -45,7 +47,12 @@ const postSlice = createSlice({
     clearPath: (state) => {
       state.searchPath = "";
     },
-    fetchIdPostData: (state, action) => {},
+    fetchIdPostData: (state, action) => {
+      state.isErr = false;
+    },
+    fetchIdPostDataError: (state) => {
+      state.isErr = true;
+    },
     showIdPostData: (state, action) => {
       state.onePost = action.payload;
     },
@@ -85,6 +92,7 @@ export const {
   addPath,
   clearPath,
   fetchIdPostData,
+  fetchIdPostDataError,
   showIdPostData,
   clearOnePost,
   updatePostData,

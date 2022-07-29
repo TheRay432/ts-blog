@@ -31,9 +31,7 @@ export const apiGetMyPostRequest = async (email: string) => {
 
 export const apiGetIdPostRequest = async (id: string) => {
   try {
-    return await (
-      await PostRequest.get(`/${id}`)
-    ).data;
+    return await PostRequest.get(`/${id}`);
   } catch (error) {
     return error;
   }
