@@ -1,4 +1,4 @@
-import { Post } from "@/interfaces";
+import { Post, UpdatePost } from "@/interfaces";
 import axios from "axios";
 
 const PostRequest = axios.create({
@@ -34,6 +34,24 @@ export const apiGetIdPostRequest = async (id: string) => {
     return await (
       await PostRequest.get(`/${id}`)
     ).data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const apiUpdateByIdRequest = async (updatePost: UpdatePost) => {
+  try {
+    return await PostRequest.put(`/${updatePost._id}`, {
+      title: updatePost.title,
+      desc: updatePost.desc,
+    });
+  } catch (error) {
+    return error;
+  }
+};
+export const apiDeletePostRequst = async (id: string) => {
+  try {
+    return await PostRequest.delete(`${id}`);
   } catch (error) {
     return error;
   }

@@ -42,9 +42,26 @@ const postSlice = createSlice({
     addPath: (state, action) => {
       state.searchPath = action.payload;
     },
+    clearPath: (state) => {
+      state.searchPath = "";
+    },
     fetchIdPostData: (state, action) => {},
     showIdPostData: (state, action) => {
       state.onePost = action.payload;
+    },
+    updatePostData: (state, action) => {},
+    updatePostDataSuccess: (state, action) => {
+      state.onePost = action.payload;
+    },
+    deletePostData: (state, action) => {},
+    deletePostDataSuccess: (state) => {
+      state.onePost = {
+        title: "",
+        desc: "",
+        postPhoto: "",
+        username: "",
+        email: "",
+      };
     },
     clearOnePost: (state) => {
       state.onePost = {
@@ -66,8 +83,13 @@ export const {
   addPostData,
   fetchMyPostData,
   addPath,
+  clearPath,
   fetchIdPostData,
   showIdPostData,
   clearOnePost,
+  updatePostData,
+  updatePostDataSuccess,
+  deletePostData,
+  deletePostDataSuccess,
 } = postSlice.actions;
 export default postSlice.reducer;

@@ -18,6 +18,11 @@ export interface Post {
   date?: string;
   __v?: number;
 }
+export interface UpdatePost {
+  _id?: string;
+  title: string;
+  desc: string;
+}
 export interface PostsProps {
   post: Post;
 }

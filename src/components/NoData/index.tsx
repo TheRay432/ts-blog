@@ -16,16 +16,19 @@ const NoData = () => {
     <>
       {test && (
         <>
-          {" "}
           <div className="nodata">
             <img
               src="https://myvueblog.netlify.app/img/error.1daa15d7.svg"
               alt=""
             />
-            <p style={{ fontSize: "36px" }}>
-              目前尚無<span style={{ color: "crimson" }}>"{searchPath}"</span>
-              的貼文
-            </p>
+            {searchPath ? (
+              <p style={{ fontSize: "36px" }}>
+                目前尚無<span style={{ color: "crimson" }}>"{searchPath}"</span>
+                的貼文
+              </p>
+            ) : (
+              <p style={{ fontSize: "36px" }}>目前尚無文章!</p>
+            )}
           </div>
         </>
       )}
