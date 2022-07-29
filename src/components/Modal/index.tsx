@@ -190,7 +190,7 @@ export const Modal = () => {
               <input
                 className={`${loginErrMsg ? "err" : ""}`}
                 id="userPassword"
-                type="text"
+                type="password"
                 value={userInfo.password}
                 placeholder="請輸入你的密碼..."
                 onChange={(e) => handInputChange(e, "password")}
