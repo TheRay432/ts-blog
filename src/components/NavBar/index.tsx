@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { RootState } from "@/redux/store";
-import { addPath, clearPath, fetchPostData } from "@/redux/slices/post";
+import { addPath, clearPath } from "@/redux/slices/post";
 const NavBar = () => {
   const [menuShow, setMenuShow] = useState("");
   const [searchPath, setSearchPath] = useState("");

@@ -1,3 +1,4 @@
+import NotFound from "@/components/NotFound";
 import HomePage from "@/pages/HomePage";
 import MyPost from "@/pages/MyPost";
 import OnePost from "@/pages/OnePost";
@@ -30,6 +31,10 @@ const routes: RouteObject[] = [
     path: "/mypost",
     element: <MyPost />,
     children: [],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ];
 export default routes;

@@ -1,0 +1,46 @@
+.notfound {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 2rem 0;
+
+  img {
+    width: 50%;
+    height: 627px;
+  }
+}
+.notfound_info {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    width: 100%;
+    p {
+      font-size: 4rem;
+      color: black;
+      word-wrap: break-word;
+    }
+  }
+  span {
+    color: crimson;
+    width: 100%;
+  }
+  p {
+    font-size: 2rem;
+    color: gray;
+  }
+}
+
+@media (max-width: 940px) {
+  .notfound {
+    img {
+      width: 100%;
+    }
+  }
+  .notfound_info {
+    width: 100%;
+    text-align: center;
+  }
+}
