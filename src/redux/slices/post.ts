@@ -8,6 +8,7 @@ interface InitialState {
   postErrMsg: string;
   searchPath: string;
   isErr: boolean;
+  isSuccess: boolean;
 }
 
 const initialState: InitialState = {
@@ -17,6 +18,7 @@ const initialState: InitialState = {
   postErrMsg: "",
   searchPath: "",
   isErr: false,
+  isSuccess: false,
 };
 
 const postSlice = createSlice({
@@ -41,6 +43,10 @@ const postSlice = createSlice({
       state.postErrMsg = action.payload;
     },
     addPostData: (state, action) => {},
+    addPostDataSuccess: (state, action) => {
+      state.posts = action.payload;
+      state.isSuccess = true;
+    },
     addPath: (state, action) => {
       state.searchPath = action.payload;
     },
@@ -69,6 +75,7 @@ const postSlice = createSlice({
         username: "",
         email: "",
       };
+      state.isSuccess = true;
     },
     clearOnePost: (state) => {
       state.onePost = {
@@ -79,6 +86,9 @@ const postSlice = createSlice({
         email: "",
       };
     },
+    initState: (state) => {
+      state.isSuccess = false;
+    },
   },
 });
 
@@ -88,6 +98,7 @@ export const {
   showErrMsg,
   hideErrMsg,
   addPostData,
+  addPostDataSuccess,
   fetchMyPostData,
   addPath,
   clearPath,
@@ -99,5 +110,6 @@ export const {
   updatePostDataSuccess,
   deletePostData,
   deletePostDataSuccess,
+  initState,
 } = postSlice.actions;
 export default postSlice.reducer;

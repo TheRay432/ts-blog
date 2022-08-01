@@ -34,10 +34,10 @@ const CardItem: React.FC<PostsProps> = ({ post }) => {
             </div>
             <h1>{post.title}</h1>
             <p>{post.desc}</p>
-            <Link to="/" onClick={(e) => handleSinglePost(e)}>
-              查看更多
-            </Link>
           </div>
+          <Link to="/" onClick={(e) => handleSinglePost(e)}>
+            查看更多
+          </Link>
         </div>
       </div>
     </>

@@ -17,11 +17,15 @@ const PostCard = () => {
   const { search } = useLocation();
 
   useEffect(() => {
+    console.log(12);
+
     const path = location.pathname.split("/")[1];
     if (path === "postData") {
       dispatch(fetchPostData(search));
     } else if (path === "mypost") {
-      dispatch(fetchMyPostData(user.email));
+      if (user.email) {
+        dispatch(fetchMyPostData(user.email));
+      }
     }
   }, [dispatch, user, location, search]);
   return (
