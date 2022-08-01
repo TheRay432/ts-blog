@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { closeLoading, showLoading } from "@/redux/slices/loading";
 import storage from "@/firebase";
-import { addPostData, hideErrMsg, showErrMsg } from "@/redux/slices/post";
+import {
+  addPostData,
+  hideErrMsg,
+  initState,
+  showErrMsg,
+} from "@/redux/slices/post";
 import { useNavigate } from "react-router-dom";
 const WriteItem = () => {
   const [postInfo, setPostInfo] = useState<Post>({
@@ -15,7 +20,9 @@ const WriteItem = () => {
     email: "",
   });
   const { user } = useSelector((state: RootState) => state.userReducer);
-  const { postErrMsg } = useSelector((state: RootState) => state.postReducer);
+  const { postErrMsg, isSuccess } = useSelector(
+    (state: RootState) => state.postReducer
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -23,6 +30,12 @@ const WriteItem = () => {
       setPostInfo({ ...postInfo, username: user.username, email: user.email });
     }
   }, [user]);
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/mypost");
+      dispatch(initState());
+    }
+  }, [isSuccess, navigate, dispatch]);
 
   const init = () => {
     setPostInfo({
@@ -73,7 +86,6 @@ const WriteItem = () => {
             dispatch(addPostData(postInfo));
             init();
             dispatch(closeLoading());
-            navigate("/mypost");
           } catch (err: any) {
             if (err.response.data) {
               dispatch(closeLoading());

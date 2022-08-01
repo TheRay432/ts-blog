@@ -10,6 +10,7 @@ import { takeLatest, call, put, StrictEffect } from "redux-saga/effects";
 import { closeLoading, showLoading } from "../slices/loading";
 import {
   addPostData,
+  addPostDataSuccess,
   deletePostData,
   deletePostDataSuccess,
   fetchIdPostData,
@@ -37,7 +38,7 @@ function* workFetchPostData(action: any): Generator<StrictEffect, any, any> {
 function* workAddPost(action: any): Generator<StrictEffect, any, any> {
   const res = yield call(apiAddPostRequest, action.payload);
   if (res.status === 200) {
-    console.log(1);
+    yield put(addPostDataSuccess(res.data));
   } else {
     if (res.response.data) {
       yield put(showErrMsg(res.response.data));
