@@ -123,9 +123,11 @@ const WriteItem = () => {
         onChange={(e) => handleChange(e, "desc")}
         required
       ></textarea>
-      <button type="submit" className="write_btn">
-        發文
-      </button>
+      <div className="write_btn_container">
+        <button type="submit" className="write_btn">
+          發文
+        </button>
+      </div>
     </form>
   );
 };

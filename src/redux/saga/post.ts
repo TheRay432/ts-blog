@@ -54,16 +54,8 @@ function* workFetchMyPost(action: any): Generator<StrictEffect, any, any> {
     }
   }
 }
-export function* postSaga() {
-  yield takeLatest(fetchPostData, workFetchPostData);
-}
 
-export function* testSaga() {
-  yield takeLatest(addPostData, workAddPost);
-}
-export function* workFetchIdPost(
-  action: any
-): Generator<StrictEffect, any, any> {
+function* workFetchIdPost(action: any): Generator<StrictEffect, any, any> {
   yield put(showLoading());
   const onePost = yield call(apiGetIdPostRequest, action.payload);
   if (onePost.status === 200) {
@@ -74,15 +66,13 @@ export function* workFetchIdPost(
 
   yield put(closeLoading());
 }
-export function* workUpdatePost(
-  action: any
-): Generator<StrictEffect, any, any> {
+function* workUpdatePost(action: any): Generator<StrictEffect, any, any> {
   yield put(showLoading());
   const updateData = yield call(apiUpdateByIdRequest, action.payload);
   yield put(updatePostDataSuccess(updateData));
   yield put(closeLoading());
 }
-export function* workDeletePostData(action: any) {
+function* workDeletePostData(action: any) {
   yield put(showLoading());
   yield call(apiDeletePostRequst, action.payload);
   yield put(deletePostDataSuccess());
@@ -91,6 +81,12 @@ export function* workDeletePostData(action: any) {
 
 export function* fetchIdPostSaga() {
   yield takeLatest(fetchIdPostData, workFetchIdPost);
+}
+export function* testSaga() {
+  yield takeLatest(addPostData, workAddPost);
+}
+export function* postSaga() {
+  yield takeLatest(fetchPostData, workFetchPostData);
 }
 
 export function* fetchMyPostDataSaga() {
