@@ -1,22 +1,9 @@
 import { all, fork } from "redux-saga/effects";
-import {
-  deletePostSaga,
-  fetchIdPostSaga,
-  fetchMyPostDataSaga,
-  postSaga,
-  testSaga,
-  updatePostSaga,
-} from "./post";
-import { userSaga } from "./user";
+import * as userSagas from "./user";
+import * as postSagas from "./post";
 
 export function* rootSaga() {
-  yield all([
-    fork(userSaga),
-    fork(postSaga),
-    fork(testSaga),
-    fork(fetchMyPostDataSaga),
-    fork(fetchIdPostSaga),
-    fork(updatePostSaga),
-    fork(deletePostSaga),
-  ]);
+  yield all(
+    [...Object.values(userSagas), ...Object.values(postSagas)].map(fork)
+  );
 }

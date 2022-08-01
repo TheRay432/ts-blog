@@ -3,9 +3,9 @@ import storage from "@/firebase";
 import { User } from "@/interfaces";
 import { closeLoading, showLoading } from "@/redux/slices/loading";
 import { closeModal, showModal } from "@/redux/slices/modal";
-import { initErrMsg, loginSuccess, toLogin } from "@/redux/slices/User";
+import { initErrMsg, toLogin } from "@/redux/slices/User";
 import { RootState } from "@/redux/store";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 export const Modal = () => {
   const [userInfo, setUserInfo] = useState<User>({
@@ -20,13 +20,6 @@ export const Modal = () => {
   );
   const { loginErrMsg } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    let user: any = localStorage.getItem("tsBlogUser");
-    if (user) {
-      dispatch(loginSuccess(JSON.parse(user)));
-    }
-  }, [dispatch]);
 
   const handleClose = () => {
     dispatch(closeModal());

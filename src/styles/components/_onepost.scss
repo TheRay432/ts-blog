@@ -3,6 +3,8 @@
   padding-right: 1rem;
   display: flex;
   flex-direction: column;
+  margin-bottom: 3rem;
+  min-height: 100vh;
   img {
     height: 600px;
     object-fit: cover;
@@ -128,4 +130,10 @@
   margin-top: 2rem;
   width: 25%;
   cursor: pointer;
+}
+
+@media (max-width: 940px) {
+  .onepostItem {
+    width: 100%;
+  }
 }

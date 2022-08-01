@@ -36,6 +36,7 @@ const NavBar = () => {
   const handLogout = (e: React.MouseEvent) => {
     e.preventDefault();
     localStorage.removeItem("tsBlogUser");
+    navigate("/");
     window.location.reload();
   };
   const scrollTop = (e: React.MouseEvent, prop: string) => {
@@ -49,12 +50,14 @@ const NavBar = () => {
       dispatch(clearPath());
     }
     navigate(`${prop}`);
+    setMenuShow("");
   };
   const handKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       navigate(`/postData?user=${searchPath}`);
       dispatch(addPath(searchPath));
       setSearchPath("");
+      setMenuShow("");
     }
   };
   return (
