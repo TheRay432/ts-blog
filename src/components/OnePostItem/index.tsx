@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deletePostData,
   fetchIdPostData,
+  initState,
   updatePostData,
 } from "@/redux/slices/post";
 import { RootState } from "@/redux/store";
@@ -21,7 +22,7 @@ const OnePostItem = () => {
     desc: "",
   });
   const { pathname } = useLocation();
-  const { onePost, isErr } = useSelector(
+  const { onePost, isErr, isSuccess } = useSelector(
     (state: RootState) => state.postReducer
   );
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -31,6 +32,12 @@ const OnePostItem = () => {
     const path = pathname.split("/")[2];
     dispatch(fetchIdPostData(path));
   }, [dispatch, pathname]);
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/mypost");
+      dispatch(initState());
+    }
+  }, [isSuccess, navigate, dispatch]);
 
   const init = () => {
     setPostInfo({ _id: "", title: "", desc: "" });
@@ -62,7 +69,6 @@ const OnePostItem = () => {
   const handleDelete = () => {
     const id = onePost._id;
     dispatch(deletePostData(id));
-    navigate("/mypost");
   };
   return (
     <>

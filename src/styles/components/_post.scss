@@ -36,6 +36,23 @@
       transform: scale(1.5);
     }
   }
+  a {
+    border-radius: 5px;
+    padding: 5px 1rem;
+    border: 1px solid crimson;
+    transition: all 0.5s ease;
+    display: inline-block;
+    color: crimson;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    &:hover {
+      background-color: crimson;
+      color: #fff;
+    }
+  }
 }
 .postLoading_img {
   width: 100%;
@@ -75,23 +92,11 @@
     color: gray;
     line-height: 2;
     display: -webkit-box;
+    text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-  }
-  a {
-    border-radius: 5px;
-    padding: 5px 1rem;
-    border: 1px solid crimson;
-    transition: all 0.5s ease;
-    display: inline-block;
-    margin-top: 1rem;
-    color: crimson;
-    text-align: center;
-    &:hover {
-      background-color: crimson;
-      color: #fff;
-    }
+    word-wrap: break-word;
   }
 }
 .card-content-top {
