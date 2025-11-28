@@ -2,7 +2,7 @@ import { User } from "@/interfaces";
 import axios from "axios";
 
 const AuthRequest = axios.create({
-  baseURL: "https://tsblog-project.herokuapp.com/api/auth",
+  baseURL: "https://server-ray-blog.vercel.app/api/auth",
 });
 
 export const apiRegisterRequest = (user: User) =>

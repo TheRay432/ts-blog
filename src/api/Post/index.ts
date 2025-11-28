@@ -2,7 +2,7 @@ import { Post, UpdatePost } from "@/interfaces";
 import axios from "axios";
 
 const PostRequest = axios.create({
-  baseURL: "https://tsblog-project.herokuapp.com/api/posts",
+  baseURL: "https://server-ray-blog.vercel.app/api/posts",
 });
 
 export const apiGetPostRequest = async (search: string) => {

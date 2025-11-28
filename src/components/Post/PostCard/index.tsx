@@ -17,7 +17,7 @@ const PostCard = () => {
   const { search } = useLocation();
 
   useEffect(() => {
-    console.log(12);
+    console.log(12, search);
 
     const path = location.pathname.split("/")[1];
     if (path === "postData") {
